@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 13:41:17 by bemelend          #+#    #+#             */
-/*   Updated: 2023/11/09 18:11:38 by bemelend         ###   ########.fr       */
+/*   Created: 2023/11/09 17:52:45 by bemelend          #+#    #+#             */
+/*   Updated: 2023/11/09 17:55:29 by bemelend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
-
-int	ft_printf(const char *format, ...)
+int	ft_strlen(char *s)
 {
-	
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
