@@ -1,82 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_x_X.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/22 13:38:11 by bemelend          #+#    #+#             */
+/*   Updated: 2023/11/22 14:22:39 by bemelend         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-void ft_free_ptr(char **ptr)
+void	ft_free_ptr(char **ptr)
 {
-    free(*ptr);
-    *ptr = NULL;
+	free(*ptr);
+	*ptr = NULL;
 }
 
-int ft_hex_len(unsigned long hexadecimal)
+int	ft_hex_len(unsigned long hexadecimal)
 {
-    int i = 0;
-    while (hexadecimal > 0)
-    {
-        hexadecimal = hexadecimal / 16;
-        i++;
-    }
-    return i;
+	int	i;
+
+	i = 0;
+	while (hexadecimal > 0)
+	{
+		hexadecimal = hexadecimal / 16;
+		i++;
+	}
+	return (i);
 }
 
-char decimal_to_hex_digit(int digit, char type)
+char	decimal_to_hex_digit(int digit, char type)
 {
-    if (digit >= 0 && digit <= 9)
-        return digit + '0';
-    if (type == 'X')
-        return (digit - 10 + 'A');
-    else
-        return (digit - 10 + 'a');
+	if (digit >= 0 && digit <= 9)
+		return (digit + '0');
+	if (type == 'X')
+		return (digit - 10 + 'A');
+	else
+		return (digit - 10 + 'a');
 }
 
-int decimal_to_hex_reverse(unsigned int decimal, char hex[], char type)
+int	decimal_to_hex_reverse(unsigned int decimal, char hex[], char type)
 {
-    int index = 0;
-    while (decimal > 0)
-    {
-        int remainder = decimal % 16;
-        hex[index] = decimal_to_hex_digit(remainder, type);
-        decimal /= 16;
-        index++;
-    }
-    // Terminar la cadena
-    hex[index] = '\0';
-    // Revertir la cadena
-    int start = 0;
-    int end = index - 1;
-    while (start < end)
-    {
-        // Intercambiar caracteres
-        char temp = hex[start];
-        hex[start] = hex[end];
-        hex[end] = temp;
-        start++;
-        end--;
-    }
-    return index; // Devuelve la longitud de la cadena generada
+	int		index;
+	int		remainder;
+	int		start;
+	int		end;
+	char	temp;
+
+	index = 0;
+	while (decimal > 0)
+	{
+		remainder = decimal % 16;
+		hex[index] = decimal_to_hex_digit(remainder, type);
+		decimal /= 16;
+		index++;
+	}
+	hex[index] = '\0';
+	start = 0;
+	end = index - 1;
+	while (start < end)
+	{
+		temp = hex[start];
+		hex[start++] = hex[end--];
+		hex[end] = temp;
+	}
+	return (index);
 }
 
-int ft_print_x(unsigned int n, char type)
+int	ft_print_x(unsigned int n, char type)
 {
-    char *num;
-    int bytes;
+	char	*num;
+	int		bytes;
 
-    bytes = 0;
-    if (!n)
-        return write(1, "0x0", sizeof(char) * 3);
-    num = (char *)malloc((ft_hex_len(n) + 1) * sizeof(char));
-    
-    if (num == NULL)
-    {
-        // Manejo de error si malloc falla
-        return (NULL);
-    }
-
-    bytes = decimal_to_hex_reverse(n, num, type);
-    ft_free_ptr(&num);
-    return (bytes);
+	bytes = 0;
+	if (!n)
+		return (write(1, "0x0", sizeof(char) * 3));
+	num = (char *)malloc((ft_hex_len(n) + 1) * sizeof(char));
+	if (num == NULL)
+	{
+		return (NULL);
+	}
+	bytes = decimal_to_hex_reverse(n, num, type);
+	ft_free_ptr(&num);
+	return (bytes);
 }
-
+/*
 int main()
 {
     unsigned int number = 255; // Reemplaza con el número que desees convertir
@@ -92,4 +104,4 @@ int main()
     printf("Resultado: %d\n", result);
 
     return 0;
-}
+}*/
