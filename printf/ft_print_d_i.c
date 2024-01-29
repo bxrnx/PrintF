@@ -1,61 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_d_i.c                                     :+:      :+:    :+:   */
+/*   ft_print_decimal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:58:12 by bemelend          #+#    #+#             */
-/*   Updated: 2023/11/22 14:27:35 by bemelend         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:59:53 by bemelend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int	ft_decimal_len(int n)
-{
-	int	len;
-
-	len = 0;
-	if (n == 0)
-		len++;
-	if (n < 0)
-		len = 1;
-	while (n)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len);
-}
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int n)
+void	ft_putnbr(int n, int *byte) //imprimir números con write
 {
 	long	nb;
 
 	nb = n;
 	if (nb < 0)
 	{
-		write(1, "-", 1);
+		ft_putchar('-', byte);
 		nb *= -1;
 	}
 	if (nb > 9)
 	{
-		ft_putnbr(nb / 10, 1);
-		ft_putchar((nb % 10) + '0');
+		ft_putnbr(nb / 10, byte);
+		ft_putchar(((nb % 10) + '0'), byte);
 	}
 	else
-		ft_putchar(nb + '0');
+		ft_putchar((nb + '0'), byte);
 }
 
-int	ft_print_decimal_and_int(float n)
+int	ft_print_decimal_and_int(float n, int *byte)
 {
-	ft_putnbr(n);
-	return (decimal_len);
+	float	decimal_part;
+	int 	decimal_bytes;
+
+	decimal_part = n - (int)n;
+	ft_putnbr((int)n, byte);
+	ft_putchar('.', byte);
+	ft_putnbr(decimal_part * 100000, byte);
+	return 0;
 }

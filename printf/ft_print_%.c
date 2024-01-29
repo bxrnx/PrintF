@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_print_percentage(void)
+int	ft_print_percentage(int *byte)
 {
-	return (write(1, "%", 1));
+	ft_putchar('%', byte);
 }

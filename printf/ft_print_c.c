@@ -13,7 +13,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-int	ft_print_character(char c)
-{
+int	ft_putchar(char c, int *byte)
+{	
+	*byte = *byte + 1;
 	return (write(1, &c, 1));
 }
