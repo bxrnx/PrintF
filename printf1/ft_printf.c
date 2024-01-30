@@ -6,43 +6,43 @@
 /*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:41:17 by bemelend          #+#    #+#             */
-/*   Updated: 2023/11/09 18:11:38 by bemelend         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:40:34 by bemelend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_select_format(va_list variables_inf, const char str, int *byte)
+void	ft_select_format(va_list variables_inf, const char str, int *byte)
 {
 	if (str == '%')
-		ft_print_percentage(byte); //listo
+		ft_print_percentage(byte);
 	if (str == 'c')
-		ft_putchar(va_arg(variables_inf, int), byte); //listo
+		ft_putchar(va_arg(variables_inf, int), byte);
 	if (str == 'd' || str == 'i')
-		ft_print_decimal_and_int(va_arg(variables_inf, int), byte); //listo
+		ft_print_decimal_and_int(va_arg(variables_inf, int), byte);
 	if (str == 'p')
-		ft_print_pointer(va_arg(variables_inf, unsigned long long), byte); //listo
-	if(str == 's')
-		ft_print_string(va_arg(variables_inf, char*), byte);
-	if(str == 'u')
+		ft_print_pointer(va_arg(variables_inf, unsigned long long), byte);
+	if (str == 's')
+		ft_print_string(va_arg(variables_inf, char *), byte);
+	if (str == 'u')
 		ft_print_unsigned(va_arg(variables_inf, unsigned int), byte);
-	if(str == 'X')
+	if (str == 'X')
 		ft_print_x(va_arg(variables_inf, unsigned int), 'X', byte);
-	if(str == 'x')
-		 ft_print_x(va_arg(variables_inf, unsigned int), 'x', byte);
+	if (str == 'x')
+		ft_print_x(va_arg(variables_inf, unsigned int), 'x', byte);
 }
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list variables_inf;
-	int i;
-	int bytedev;
-	char c;
+	va_list	variables_inf;
+	int		i;
+	int		bytedev;
+	char	c;
 
 	bytedev = 0;
-	va_start(variables_inf, str); // en arg se almacenan todos los argumentos dsp de str; es decir todos los variables estan en arg.
+	va_start(variables_inf, str);
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '%')
 		{
@@ -53,12 +53,12 @@ int ft_printf(const char *str, ...)
 			i++;
 	}
 	va_end(variables_inf);
-	return(bytedev);
+	return (bytedev);
 }
 
-int main()
+/*int main()
 {
-	char  banano[] = "Hola q ase";
-	ft_printf("%s", banano);
+	int  banano;
+	ft_printf("%p", &banano);
 	return 0;
-}
+}*/
