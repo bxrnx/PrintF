@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 void ft_free_ptr(char **ptr) {
     free(*ptr);

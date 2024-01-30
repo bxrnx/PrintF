@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 
 void	ft_putnbr(int n, int *byte) //imprimir números con write
 {
