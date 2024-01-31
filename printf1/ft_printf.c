@@ -6,7 +6,7 @@
 /*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:41:17 by bemelend          #+#    #+#             */
-/*   Updated: 2024/01/30 17:40:34 by bemelend         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:58:55 by bemelend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,25 @@ int	ft_printf(const char *str, ...)
 		{
 			c = str[++i];
 			ft_select_format(variables_inf, c, &bytedev);
+			i++;
 		}
 		else
+		{
+			ft_putchar(str[i], &bytedev);
 			i++;
+		}
 	}
 	va_end(variables_inf);
 	return (bytedev);
 }
 
-/*int main()
+/*int	main(void)
 {
-	int  banano;
-	ft_printf("%p", &banano);
-	return 0;
+	int byte;
+	byte = 0;
+
+	byte = ft_printf( " %x \n", 0);
+
+	printf(" %x \n", 0);
+	return (0);
 }*/

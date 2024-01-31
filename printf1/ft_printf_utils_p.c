@@ -6,11 +6,12 @@
 /*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:10:19 by bemelend          #+#    #+#             */
-/*   Updated: 2024/01/30 17:40:38 by bemelend         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:58:58 by bemelend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdint.h>
 
 void	ft_free_ptr(char **ptr)
 {
@@ -23,10 +24,10 @@ char	ft_decimaltohexdigit(int digit)
 	if (digit >= 0 && digit <= 9)
 		return (digit + '0');
 	else
-		return (digit - 10 + 'A');
+		return (digit - 10 + 'a');
 }
 
-int	ft_hex_len(unsigned long numhex)
+int	ft_hex_len(uintptr_t numhex)
 {
 	int	i;
 
@@ -39,7 +40,7 @@ int	ft_hex_len(unsigned long numhex)
 	return (i);
 }
 
-int	ft_decimaltohexreverse(unsigned int decimal, char hex[])
+int	ft_decimaltohexreverse(uintptr_t decimal, char hex[])
 {
 	int		i;
 	int		remainder;
@@ -67,7 +68,7 @@ int	ft_decimaltohexreverse(unsigned int decimal, char hex[])
 	return (i);
 }
 
-int	ft_print_pointer(unsigned long pointeraddress, int *byte)
+int	ft_print_pointer(uintptr_t pointeraddress, int *byte)
 {
 	char	*numhex;
 	int		i;

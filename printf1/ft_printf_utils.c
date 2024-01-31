@@ -6,7 +6,7 @@
 /*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:35:30 by bemelend          #+#    #+#             */
-/*   Updated: 2024/01/30 17:40:35 by bemelend         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:58:56 by bemelend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,24 @@ void	ft_putnbr(int n, int *byte) //imprimir números con write
 		ft_putchar((nb + '0'), byte);
 }
 
-int	ft_print_decimal_and_int(float n, int *byte)
+int	ft_print_decimal_and_int(long long n, int *byte)
 {
-	float	decimal_part;
-
-	decimal_part = n - (int)n;
 	ft_putnbr((int)n, byte);
-	ft_putchar('.', byte);
-	ft_putnbr(decimal_part * 100000, byte);
 	return (0);
 }
 
 int	ft_print_string(char *s, int *byte)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	if (!s)
-		return ('\0');
+	{
+		write (1, "(null)", 6);
+		*byte = *byte + 6;
+		return (0);
+	}
 	while (s[++i])
 		ft_putchar(s[i], byte);
-	return (i);
+	return (0);
 }

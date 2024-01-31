@@ -6,7 +6,7 @@
 /*   By: bemelend <bemelend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:35:30 by bemelend          #+#    #+#             */
-/*   Updated: 2024/01/30 17:40:37 by bemelend         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:58:57 by bemelend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,10 @@ int	ft_print_x(unsigned int n, char type, int *byte)
 {
 	char	*num;
 	int		i;
-	int		total;
 
 	if (!n)
 	{
-		total = 0;
-		total += ft_putchar('0', byte);
-		total += ft_putchar('x', byte);
-		total += ft_putchar('0', byte);
-		return (total);
+		return (ft_putchar(('0'), byte));
 	}
 	num = (char *)malloc((ft_hex_len(n) + 1) * sizeof(char));
 	if (num == NULL)
